@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple React Test</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        function SimpleTest() {
+            console.log('🧪 SimpleTest: Component function called');
+            
+            const [count, setCount] = useState(0);
+            const [mounted, setMounted] = useState(false);
+            
+            console.log('🧪 SimpleTest: After useState, count:', count, 'mounted:', mounted);
+            
+            useEffect(() => {
+                console.log('🚀 SimpleTest: useEffect running!');
+                setMounted(true);
+            }, []);
+            
+            useEffect(() => {
+                console.log('🔄 SimpleTest: Count changed to:', count);
+            }, [count]);
+            
+            return React.createElement('div', { style: { padding: '20px' } },
+                React.createElement('h1', null, 'Simple React Test'),
+                React.createElement('p', null, `Count: ${count}`),
+                React.createElement('p', null, `Mounted: ${mounted}`),
+                React.createElement('button', {
+                    onClick: () => setCount(c => c + 1),
+                    style: { padding: '10px', marginTop: '10px' }
+                }, 'Increment')
+            );
+        }
+        
+        console.log('🏁 Starting to render SimpleTest component');
+        ReactDOM.render(React.createElement(SimpleTest), document.getElementById('root'));
+        console.log('✅ ReactDOM.render called');
+    </script>
+</body>
+</html>

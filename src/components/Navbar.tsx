@@ -61,9 +61,10 @@ export default function Header({ onToggle }: HeaderProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.23, 0.86, 0.39, 0.96] }}
       className={cn(
-        "relative z-40 flex items-center justify-between mx-2 mt-3 mr-2 px-3 py-2 rounded-xl transition-all duration-400 ease-[cubic-bezier(0.7,-0.15,0.25,1.15)] will-change-transform ",
-        "shadow-[0_8px_30px_rgb(236,72,153,0.15)] dark:shadow-[0_8px_30px_rgb(236,72,153,0.07)]",
-        "hover:shadow-[0_15px_50px_rgb(236,72,153,0.25)] dark:hover:shadow-[0_15px_50px_rgb(236,72,153,0.15)] dark:border:white",
+        "relative z-40 flex items-center justify-between mx-2 mt-3 mr-2 px-3 py-2 rounded-xl transition-all duration-400 ease-[cubic-bezier(0.7,-0.15,0.25,1.15)] will-change-transform",
+    "border border-pink-200 shadow-[0_8px_30px_rgb(236,72,153,0.15)] dark:border-gray-600 dark:shadow-[0_8px_30px_rgb(236,72,153,0.07)]",
+    "hover:shadow-[0_15px_50px_rgb(236,72,153,0.25)] dark:hover:shadow-[0_15px_50px_rgb(236,72,153,0.15)]",
+
         scrolled
           ? "shadow-[0_12px_40px_rgb(236,72,153,0.25)] dark:shadow-[0_12px_40px_rgb(236,72,153,0.12)]"
           : ""
@@ -197,7 +198,7 @@ export default function Header({ onToggle }: HeaderProps) {
                 SM
               </AvatarFallback>
             </Avatar>
-            <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-900"></div>
+            <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white dark:border-gray-300"></div>
           </div>
           <ChevronDown className="w-4 h-4 text-pink-600 dark:text-pink-300" />
         </div>

@@ -137,6 +137,14 @@ export default function Dashboard() {
       change: `AED ${totalRevenue.toFixed(0)} total value`,
       color: 'purple'
     },
+
+    { 
+  name: 'Services by Gender', 
+  value: `${menServices.length}M / ${womenServices.length}F`, 
+  change: 'Gender split',
+  color: 'green'
+},
+
   ];
 
   // Get recent activity (last 5 items sorted by creation date)
@@ -197,6 +205,22 @@ export default function Dashboard() {
             <path fillRule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732L14.146 12.8l-1.179 4.456a1 1 0 01-1.856.048L9.5 13.9l-4.409 1.645a1 1 0 01-1.298-1.298L5.438 9.838 1.134 6.9a1 1 0 010-1.732L5.438 2.162 6.793.807a1 1 0 011.298 1.298L9.5 6.1l1.611-3.404A1 1 0 0112 2z" clipRule="evenodd" />
           </svg>
         );
+      case 'services by gender':
+  return (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      {/* Male symbol (blue) */}
+      <circle cx="9" cy="9" r="3" className="text-blue-500" fill="currentColor" />
+      <path d="M12 6l6-6" className="text-blue-500" stroke="currentColor" />
+      <path d="M18 0v4h-4" className="text-blue-500" stroke="currentColor" />
+
+      {/* Female symbol (pink) */}
+      <circle cx="15" cy="15" r="3" className="text-pink-500" fill="currentColor" />
+      <path d="M15 18v4" className="text-pink-500" stroke="currentColor" />
+      <path d="M13 22h4" className="text-pink-500" stroke="currentColor" />
+    </svg>
+  );
+
+
       default:
         return (
           <svg className={iconClass} fill="currentColor" viewBox="0 0 20 20">
@@ -308,7 +332,7 @@ export default function Dashboard() {
           </div>
           
           {/* Stats cards skeleton */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div className="grid grid-cols-2 w-full sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full mb-6">
             {[...Array(4)].map((_, index) => (
               <div 
                 key={index}
@@ -355,7 +379,7 @@ export default function Dashboard() {
           </div>
           
           {/* Recent activity skeleton */}
-          <div className="bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90  dark:bg-black backdrop-blur-xl border border-pink-200/40  dark:bg-black rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-[0_8px_32px_rgba(233,30,99,0.12)]">
+          <div className=" w-full bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90  dark:bg-black backdrop-blur-xl border border-pink-200/40  dark:bg-black rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-[0_8px_32px_rgba(233,30,99,0.12)]">
             <div className="flex items-center justify-between mb-6">
               <div className="h-6 bg-gradient-to-r from-pink-200/60 to-pink-100/40 rounded-lg w-36" />
               <div className="flex items-center space-x-2">
@@ -365,9 +389,10 @@ export default function Dashboard() {
             </div>
             
             <div className="relative">
-              <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-pink-200/60 via-pink-300/40 to-pink-200/60 rounded-full" />
               
-              <div className="space-y-6">
+              
+           <div className="space-y-6 lg:space-y-8">
+
                 {[...Array(3)].map((_, index) => (
                   <div 
                     key={index}
@@ -376,8 +401,8 @@ export default function Dashboard() {
                   >
                     <div className="w-8 h-8 bg-gradient-to-br from-pink-200/60 to-pink-300/40 rounded-full flex-shrink-0" />
                     <div className="flex-1">
-                      <div className="h-4 bg-pink-100/50 rounded mb-2 w-3/4" />
-                      <div className="h-3 bg-pink-50/60 rounded w-1/2" />
+                      <div className="h-4 bg-pink-100/50 rounded mb-2 w-full" />
+                      <div className="h-3 bg-pink-50/60 rounded w-full" />
                     </div>
                   </div>
                 ))}
@@ -409,7 +434,7 @@ export default function Dashboard() {
   }
 
   return (
-  <div className="min-h-screen w-full bg-gradient-to-br from-pink-50 via-white to-pink-100 dark:bg-black dark:text-white p-4 sm:p-6 relative overflow-hidden">
+  <div className="min-h-screen w-full bg-white dark:bg-black dark:text-white p-4 sm:p-6 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0" style={{
@@ -437,10 +462,10 @@ export default function Dashboard() {
         {/* Compact Header */}
         
         <div className="mb-4 sm:mb-6 px-2 sm:px-0 dark:bg-black">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent mb-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-3xl font-bold bg-gradient-to-r from-pink-600 to-pink-800 bg-clip-text text-transparent dark:text-white mb-2">
             Dashboard Overview
           </h1>
-          <p className="text-xs text-gray-600 dark:text-pink-500">
+          <p className="text-xs text-gray-700 dark:text-pink-500">
           Realtime overview of your services and offers
         </p>
         </div>
@@ -450,31 +475,41 @@ export default function Dashboard() {
           {stats.map((stat, index) => (
             <div 
               key={stat.name} 
-              className="group relative bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90 backdrop-blur-xl border border-pink-200/40 rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 shadow-[0_8px_32px_rgba(233,30,99,0.12)] transition-all duration-500 hover:shadow-[0_16px_48px_rgba(233,30,99,0.2)] hover:scale-[1.02] hover:-translate-y-1 active:scale-[0.98] will-change-transform touch-manipulation"
+            className="group relative bg-white dark:bg-black via-pink-50/80 to-white/90 
+backdrop-blur-xl border border-pink-200/40 
+rounded-xl sm:rounded-2xl p-2 sm:p-2.5 lg:p-3 
+shadow-[0_4px_16px_rgba(233,30,99,0.12)] 
+transition-all duration-500 
+hover:shadow-[0_8px_24px_rgba(233,30,99,0.2)] 
+hover:scale-[1.01] hover:-translate-y-0.5 active:scale-[0.97] 
+dark:hover:bg-gray-500
+will-change-transform touch-manipulation"
+
+
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Animated background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-pink-400/5 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-white rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Floating particles effect */}
               <div className="absolute top-2 right-2 w-1 h-1 bg-pink-400/30 rounded-full animate-pulse" />
               <div className="absolute top-4 right-4 w-0.5 h-0.5 bg-pink-300/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
               
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-3 sm:mb-4">
-                  <div className={`relative w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br ${getStatGradient(stat.color)} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className="flex items-center justify-between mb-1 sm:mb-1">
+                  <div className={`relative w-8 h-8 sm:w-10 sm:h-9 lg:w-6 lg:h-6 rounded-xl sm:rounded-2xl bg-gradient-to-br ${getStatGradient(stat.color)} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                     <div className="absolute inset-0 bg-white/20 rounded-xl sm:rounded-2xl" />
                     {getStatIcon(stat.name)}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-pink-400/20 to-pink-600/20 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute -inset-1 bg-white rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                   <div className="text-right hidden sm:block">
-                    <div className="text-xs lg:text-sm text-pink-600/80 font-medium mb-0.5">{stat.change}</div>
+                    <div className="text-xs lg:text-sm text-pink-600/80 font-medium dark:text-gray-400  mb-0.5">{stat.change}</div>
                     <div className="w-8 lg:w-12 h-0.5 bg-gradient-to-r from-pink-300 to-pink-500 rounded-full ml-auto" />
                   </div>
                 </div>
                 
                 <div className="mb-3">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-700 to-pink-600 bg-clip-text text-transparent mb-1 group-hover:scale-105 transition-transform duration-300">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-pink-700 to-pink-600 bg-clip-text text-transparent dark:text-gray-400 mb-1 group-hover:scale-105 transition-transform duration-300">
                     {stat.value}
                   </div>
                   <div className="text-sm sm:text-base lg:text-lg text-pink-700 font-semibold tracking-wide">{stat.name}</div>
@@ -500,7 +535,7 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           {/* Real-time Services Overview */}
-          <div>
+        {/*}  <div>
             <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 dark:bg-black rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)] transition-all duration-300 hover:shadow-[0_12px_40px_rgb(233,30,99,0.25)]">
               <h2 className="text-sm font-semibold text-pink-700 mb-2 sm:mb-3">Services by Gender</h2>
               <div className="space-y-2 sm:space-y-3">
@@ -521,138 +556,132 @@ export default function Dashboard() {
 
               </div>
             </div>
-          </div>
+          </div>*/}
 
-          {/* Enhanced Real-time Recent Activity */}
-          <div>
-            <div className="bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90 dark:bg-black backdrop-blur-xl border border-pink-200/40  rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_8px_32px_rgba(233,30,99,0.12)] mx-2 sm:mx-0">
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-pink-700 to-pink-600 dark:bg-black bg-clip-text text-transparent">Recent Activity</h2>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-400 rounded-full animate-pulse dark:bg-black" />
-                  <span className="text-xs lg:text-sm text-pink-600/80 font-medium">Live</span>
+         {/* Enhanced Real-time Recent Activity */}
+<div className="w-full col-span-full">
+  <div className="w-full bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90 
+  backdrop-blur-xl border border-pink-200/40 
+  rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 
+  shadow-[0_4px_16px_rgba(233,30,99,0.1)]
+  dark:bg-black dark:from-black dark:via-black dark:to-black">
+
+    
+    {/* header */}
+    <div className="flex items-center justify-between mb-3 sm:mb-4">
+      <h2 className="text-base sm:text-lg lg:text-xl font-semibold bg-gradient-to-r 
+        from-pink-700 to-pink-600 dark:bg-black dark:text-white bg-clip-text text-transparent">
+        Recent Activity
+      </h2>
+      <div className="flex items-center space-x-1">
+        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse dark:bg-black" />
+        <span className="text-[10px] sm:text-xs text-pink-600/80 font-medium">Live</span>
+      </div>
+    </div>
+
+    {/* grid of activities */}
+    <div className="relative">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {recentActivity.length > 0 ? (
+          recentActivity.map((activity, index) => (
+            <div key={index} 
+           className="group relative flex flex-col p-3 lg:p-4 
+    rounded-lg lg:rounded-xl 
+    bg-gradient-to-r from-white/60 to-pink-50/40 
+    dark:bg-black dark:from-black dark:to-black 
+    border border-pink-200/30 hover:border-pink-300/50 
+    transition-all duration-300 
+    hover:shadow-[0_2px_10px_rgba(233,30,99,0.1)]"
+>
+              {/* Timeline dot */}
+              <div className="relative z-10 flex-shrink-0 mb-2">
+                <div className="w-6 h-6 lg:w-7 lg:h-7 bg-gradient-to-br from-pink-500 to-pink-600 
+                  rounded-full flex items-center justify-center shadow-md">
+                  <div className="w-2.5 h-2.5 bg-white rounded-full" />
                 </div>
-              </div>
-              
-              <div className="relative">
-                {/* Timeline line */}
-                <div className="absolute left-4 lg:left-6 top-0 bottom-0 w-0.5 lg:w-1 bg-gradient-to-b from-pink-300 via-pink-400 to-pink-300 dark:bg-black rounded-full" />
-                
-                <div className="space-y-6 lg:space-y-8">
-                  {recentActivity.length > 0 ? (
-                    recentActivity.map((activity, index) => (
-                      <div 
-                        key={index} 
-                        className="group relative flex items-start space-x-4 lg:space-x-6 p-4 lg:p-6 rounded-xl lg:rounded-2xl bg-gradient-to-r from-white/60 to-pink-50/40 dark:bg-black hover:from-white/80 hover:to-pink-50/60 border border-pink-200/30 hover:border-pink-300/50 transition-all duration-300 hover:shadow-[0_4px_20px_rgba(233,30,99,0.15)] hover:scale-[1.01] active:scale-[0.99] touch-manipulation"
-                        style={{ animationDelay: `${index * 150}ms` }}
-                      >
-                        {/* Timeline dot */}
-                        <div className="relative z-10 flex-shrink-0">
-                          <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-pink-500 to-pink-600  dark:bg-black rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <div className="w-3 h-3 lg:w-4 lg:h-4 bg-white dark:bg-black rounded-full" />
-                            <div className="absolute -inset-1 bg-pink-400/30 rounded-full blur opacity-0 group-hover:opacity-100 dark:bg-black transition-opacity duration-300" />
-                          </div>
-                          {/* Connecting line to timeline */}
-                          <div className="absolute top-4 lg:top-5 -left-4 lg:-left-6 w-4 lg:w-6 h-0.5 lg:h-1 bg-gradient-to-r from-pink-400 to-pink-300  dark:bg-black" />
-                        </div>
-                        
-                        {/* Activity content */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between mb-1">
-                            <p className="text-sm sm:text-base lg:text-lg text-pink-700 font-semibold group-hover:text-pink-800 dark:bg-black transition-colors duration-200">
-                              {activity.action}: <span className="text-pink-600">{activity.item}</span>
-                            </p>
-                            <div className="flex items-center space-x-1 ml-2">
-                              <div className="w-1 h-1 bg-pink-400/60 dark:bg-black rounded-full" />
-                              <div className="w-1 h-1 bg-pink-300/60 dark:bg-black rounded-full" />
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-center justify-between">
-                            <p className="text-xs sm:text-sm lg:text-base text-pink-600/80 font-medium">{activity.time}</p>
-                            <div className="w-12 h-0.5 bg-gradient-to-r from-pink-300 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
-                        </div>
-                        
-                        {/* Hover effect overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-pink-400/5 rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-8 sm:py-12">
-                      <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full flex items-center justify-center">
-                        <div className="w-8 h-8 bg-pink-300 rounded-full opacity-50" />
-                      </div>
-                      <p className="text-sm text-pink-500 font-medium mb-2">No recent activity</p>
-                      <p className="text-xs text-pink-400">Start by adding some data to see live updates!</p>
-                    </div>
-                  )}
-                </div>
-                
-                {/* Timeline end indicator */}
-                {recentActivity.length > 0 && (
-                  <div className="absolute left-3 -bottom-2 w-2 h-2 bg-pink-300 rounded-full" />
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced Quick Actions */}
-        <div className="mt-3 sm:mt-4">
-          <div className="bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90 backdrop-blur-xl border border-pink-200/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-[0_8px_32px_rgba(233,30,99,0.12)] transition-all duration-300 hover:shadow-[0_12px_40px_rgb(233,30,99,0.25)] mx-2 sm:mx-0">
-            <div className="flex items-center justify-between mb-4 sm:mb-6">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-pink-700 to-pink-600 bg-clip-text text-transparent">Quick Actions</h2>
-              <div className="w-12 lg:w-16 h-0.5 bg-gradient-to-r from-pink-300 to-pink-500 rounded-full" />
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-              {quickActions.map((action, index) => (
-                <Link
-                  key={action.name}
-                  href={action.href}
-                  className="group relative bg-gradient-to-br from-white/90 to-pink-50/60 dark:bg-black  hover:from-white hover:to-pink-50/80 border border-pink-200/50 hover:border-pink-300/60 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 text-center transition-all duration-300 hover:shadow-[0_8px_32px_rgba(233,30,99,0.2)] hover:scale-105 hover:-translate-y-1 active:scale-95 will-change-transform touch-manipulation"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {/* Floating particles */}
-                  <div className="absolute top-1 right-1 w-1 h-1 bg-pink-400/40 rounded-full animate-pulse" />
-                  <div className="absolute top-2 right-3 w-0.5 h-0.5 bg-pink-300/50 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                  
-                  {/* Icon container */}
-                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18 mx-auto mb-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <div className="absolute inset-0 bg-white/20 rounded-xl sm:rounded-2xl" />
-                    <span className="text-white text-lg sm:text-xl">{action.icon}</span>
-                    <div className="absolute -inset-1 bg-gradient-to-r from-pink-400/30 to-pink-600/30 rounded-xl sm:rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  
-                  {/* Action name */}
-                  <div className="text-sm sm:text-base lg:text-lg font-semibold text-pink-700 group-hover:text-pink-800 transition-colors duration-200">
-                    {action.name}
-                  </div>
-                  
-                  {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-pink-400/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-8 h-0.5 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full transition-all duration-300" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Real-time Summary Cards */}
-        <div className="mt-3 sm:mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {/* Categories Summary */}
-          <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)]">
-            <h3 className="text-sm font-semibold text-pink-700 mb-2">Categories</h3>
-            <div className="space-y-1">
-              <div className="flex justify-between text-xs">
-                <span className="text-blue-600">Men: {categories.filter(cat => cat.gender === 'men').length}</span>
-                <span className="text-pink-600">Women: {categories.filter(cat => cat.gender === 'women').length}</span>
+                <div className="absolute top-3 -left-3 w-3 h-0.5 
+                  bg-gradient-to-r from-pink-400 to-pink-300" />
               </div>
 
+              {/* Activity content */}
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm text-pink-700 dark:text-white font-medium truncate">
+                  {activity.action}: <span className="text-pink-600 dark:text-white">{activity.item}</span>
+                </p>
+                <p className="text-[11px] sm:text-xs text-pink-600/70 font-normal">
+                  {activity.time}
+                </p>
+              </div>
             </div>
+          ))
+        ) : (
+          <p className="text-center text-pink-500 py-4 text-sm">No recent activity</p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+       {/* Enhanced Quick Actions */}
+<div className="mt-2 sm:mt-3">
+  <div className="bg-gradient-to-br from-white/95 via-pink-50/80 to-white/90 
+    backdrop-blur-xl border border-pink-200/40 
+    rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_4px_16px_rgba(233,30,99,0.12)] 
+    transition-all duration-300 hover:shadow-[0_8px_24px_rgb(233,30,99,0.2)] mx-2 sm:mx-0
+    dark:bg-black dark:from-black dark:via-black dark:to-black">
+    
+    {/* header */}
+    <div className="flex items-center justify-between mb-3 sm:mb-4">
+      <h2 className="text-base sm:text-lg font-semibold bg-gradient-to-r 
+        from-pink-700 to-pink-600 bg-clip-text dark:text-white text-transparent">
+        Quick Actions
+      </h2>
+      <div className="w-10 h-0.5 bg-gradient-to-r from-pink-300 to-pink-500 dark:bg-black  rounded-full" />
+    </div>
+
+    {/* grid */}
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      {quickActions.map((action, index) => (
+        <Link
+          key={action.name}
+          href={action.href}
+          className="group relative bg-gradient-to-br from-white/90 to-pink-50/60 
+            dark:bg-black hover:from-white hover:to-pink-50/80 
+            border border-pink-200/50 hover:border-pink-300/60 
+            rounded-lg sm:rounded-xl p-3 sm:p-4 text-center 
+            transition-all duration-300 hover:shadow-[0_4px_16px_rgba(233,30,99,0.15)] 
+            hover:scale-105 hover:-translate-y-0.5 active:scale-95 dark:bg-black dark:from-black dark:via-black dark:to-black"
+          style={{ animationDelay: `${index * 100}ms` }}
+        >
+          {/* floating particles */}
+          <div className="absolute top-1 right-1 w-1 h-1 bg-pink-400/40 rounded-full animate-pulse" />
+          <div className="absolute top-2 right-2 w-0.5 h-0.5 bg-pink-300/50 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+
+          {/* icon container */}
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 rounded-lg sm:rounded-xl 
+            bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center shadow-md 
+            group-hover:scale-110 transition-all duration-300">
+            <div className="absolute inset-0 bg-white/20 rounded-lg sm:rounded-xl" />
+            <span className="text-white text-sm sm:text-base">{action.icon}</span>
+            <div className="absolute -inset-1 bg-gradient-to-r from-pink-400/30 to-pink-600/30 
+              rounded-lg sm:rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
+
+          {/* action name */}
+          <div className="text-xs sm:text-sm font-medium text-pink-700 group-hover:text-pink-800 transition-colors duration-200">
+            {action.name}
+          </div>
+
+          {/* bottom accent line */}
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-6 h-0.5 
+            bg-gradient-to-r from-pink-400 to-pink-600 rounded-full transition-all duration-300" />
+        </Link>
+      ))}
+    </div>
+  </div>
+
+
 
           {/* Branches Summary */}
           {/* <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 rounded-2xl p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)]">
@@ -667,21 +696,44 @@ export default function Dashboard() {
               </div>
             </div>
           </div> */}
+        {/* Summary Row */}
+<div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+  
+  {/* Categories Summary */}
+  <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)] dark:bg-black border:gray-500">
+    <h3 className="text-sm font-semibold text-pink-700 dark:text-white mb-2">Categories</h3>
+    <div className="space-y-1">
+      <div className="flex justify-between text-xs">
+        <span className="text-blue-600">
+          Men: {categories.filter(cat => cat.gender === 'men').length}
+        </span>
+        <span className="text-pink-600">
+          Women: {categories.filter(cat => cat.gender === 'women').length}
+        </span>
+      </div>
+      <div className="text-xs text-pink-600">
+        Total: {categories.length}
+      </div>
+    </div>
+  </div>
 
-          {/* Offers Summary */}
-          <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)]">
-            <h3 className="text-sm font-semibold text-pink-700 mb-2">Offers</h3>
-            <div className="space-y-1">
-              <div className="flex justify-between text-xs">
-                <span className="text-green-600">Active: {activeOffers.length}</span>
-                <span className="text-gray-600">Total: {offers.length}</span>
-              </div>
-              <div className="text-xs text-pink-600">
-                Expired: {offers.filter(offer => new Date(offer.validTo) < new Date()).length}
-              </div>
-            </div>
-          </div>
-        </div>
+  {/* Offers Summary */}
+  <div className="bg-white/90 backdrop-blur-xl border border-pink-200/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(233,30,99,0.15)] dark:bg-black border:gray-500">
+    <h3 className="text-sm font-semibold text-pink-700 dark:text-white mb-2">Offers</h3>
+    <div className="space-y-1">
+      <div className="flex justify-between text-xs">
+        <span className="text-green-600">Active: {activeOffers.length}</span>
+        <span className="text-gray-600">Total: {offers.length}</span>
+      </div>
+      <div className="text-xs text-pink-600">
+        Expired: {offers.filter(offer => new Date(offer.validTo) < new Date()).length}
+      </div>
+    </div>
+  </div>
+ </div>
+  </div>
+
+
         </div>
       </div>
     </div>
